@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
 import com.qa.opencart.constants.AppConstants;
-import com.qa.opencart.pages.AccountPage;
+import com.qa.opencart.pages.SearchResultPage;
 
 public class AccountPageTest extends BaseTest {
 
@@ -43,6 +43,13 @@ public class AccountPageTest extends BaseTest {
 	public void accPageHeaderListTest() {
 		List <String> actAccPageHeaderList = accPage.getAccountsHeader();
 		Assert.assertEquals(actAccPageHeaderList, AppConstants.ACCOUNT_PAGE_HEADER_List);
+		
+	}
+	@Test
+	public void searchTest() {
+		searchResultPage = accPage.doSearch("MacBook");
+		productInfoPage	= searchResultPage.selectProduct("MacBook Pro");
+		Assert.assertEquals(productInfoPage.getProductHeaderName(), "MacBook Pro");
 		
 	}
 }
