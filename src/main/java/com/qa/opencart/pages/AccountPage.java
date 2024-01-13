@@ -18,6 +18,7 @@ public class AccountPage {
 	private By logoutLink = By.linkText("Logout");
 	private By Search = By.name("search");
 	private By accHeaders = By.cssSelector("div#content >h2");
+	private By searchIcon  = By.xpath("//button[@class='btn btn-default btn-lg']");
 
 	// Page Const....
 	public AccountPage(WebDriver driver) {
@@ -54,5 +55,10 @@ public class AccountPage {
 		}
 		return headerValList;
 
+	}
+	public SearchResultPage doSearch(String searchKey) {
+		eleUtil.waitForVisibilityOfElement(Search, AppConstants.MEDIUM_DEFAULT_WAIT).sendKeys(searchKey);
+		eleUtil.doClick(searchIcon);
+		return new SearchResultPage(driver);
 	}
 }
